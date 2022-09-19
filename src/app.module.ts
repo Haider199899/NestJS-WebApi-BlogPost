@@ -7,14 +7,14 @@ import { DatabaseModule } from './core/database/database.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { PostsModule } from './modules/posts/posts.module';
-
+const envModule = ConfigModule.forRoot({
+  isGlobal: true,
+})
 
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal:true
-    }),
+    envModule,
     DatabaseModule,
     UsersModule,
     AuthModule,

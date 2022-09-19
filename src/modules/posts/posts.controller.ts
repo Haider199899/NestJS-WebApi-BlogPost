@@ -9,12 +9,13 @@ import { PostDto } from './dto/posts.dto';
 export class PostsController {
     constructor(private readonly postService: PostsService) { }
 
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     async findAll() {
         // get all posts in the db
         return await this.postService.findAll();
     }
-
+    @UseGuards(AuthGuard('jwt'))
     @Get(':id')
     async findOne(@Param('id') id: number): Promise<PostEntity> {
         // find the post with this id
@@ -29,7 +30,7 @@ export class PostsController {
         return post;
     }
 
-  //  @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Post('post')
     async create(@Body() post: PostDto, @Request() req): Promise<PostEntity> {
         // create a new post and return the newly created post

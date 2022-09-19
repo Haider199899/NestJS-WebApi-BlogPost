@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { UserDto } from '../users/dto/user.dto';
 import { ValidateInputPipe } from 'src/core/pipes/validate.pipe';
 import { UsePipes } from '@nestjs/common/decorators';
-import { LocalAuthGuard } from './localAuthGuard';
+
 import { DoesUserExist } from 'src/core/guards/doesUserExist';
 
 @Controller('auth')

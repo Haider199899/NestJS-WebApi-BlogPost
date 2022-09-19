@@ -14,13 +14,23 @@ export class UsersService {
     }
 
     async findOneByEmail(email: string): Promise<User> {
+        console.log(email)
         return await this.userRepository.findOne<User>({ where: { email } });
     }
 
     async findOneById(id: number): Promise<User> {
+        console.log(id)
         return await this.userRepository.findOne<User>({ where: { id } });
     }
-    
+    async delete(id) {
+        return await this.userRepository.destroy({ where: { id } });
+    }
+
+    async update(id, data) {
+        const [numberOfAffectedRows, [updatedUser]] = await this.userRepository.update({ ...data }, { where: { id}, returning: true });
+
+        return { numberOfAffectedRows, updatedUser };
+    }   
     
 
 }
